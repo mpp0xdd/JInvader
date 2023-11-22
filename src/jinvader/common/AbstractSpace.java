@@ -2,7 +2,7 @@ package jinvader.common;
 
 import java.awt.Rectangle;
 
-public abstract class AbstractSpace implements Drawable, Rectangular {
+public abstract class AbstractSpace implements InvaderComponent {
 
   private final AbstractLaserCannon laserCannon;
 

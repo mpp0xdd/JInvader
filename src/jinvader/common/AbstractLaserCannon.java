@@ -3,7 +3,7 @@ package jinvader.common;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public abstract class AbstractLaserCannon implements Drawable, Rectangular {
+public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   private final AbstractSpace space;
   private final Point point;
@@ -29,8 +29,6 @@ public abstract class AbstractLaserCannon implements Drawable, Rectangular {
   public final int y() {
     return point.y;
   }
-
-  public abstract int speed();
 
   public AbstractLaser getLaser() {
     return laser;

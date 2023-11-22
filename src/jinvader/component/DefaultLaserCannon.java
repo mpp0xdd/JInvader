@@ -17,8 +17,11 @@ class DefaultLaserCannon extends AbstractLaserCannon {
   @Override
   public void draw(Graphics g) {
     if (g instanceof Graphics2D g2) {
+      // Draw this.
       g2.setColor(Color.GREEN);
       g2.fill(asRectangle());
+      // Draw a laser.
+      getLaser().draw(g2);
       return;
     }
     throw (new RuntimeException("Drawing failed because it is not a Graphics2D instance."));

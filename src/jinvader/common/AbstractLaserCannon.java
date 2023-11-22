@@ -30,10 +30,6 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
     return point.y;
   }
 
-  public AbstractLaser getLaser() {
-    return laser;
-  }
-
   public void moveLeft() {
     point.translate(-speed(), 0);
     if (!space.asRectangle().contains(this.asRectangle())) {
@@ -53,6 +49,10 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
   }
 
   protected abstract AbstractLaser newLaser();
+
+  protected AbstractLaser getLaser() {
+    return laser;
+  }
 
   AbstractSpace getSpace() {
     return space;

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import jinvader.common.AbstractLaser;
 import jinvader.common.AbstractLaserCannon;
 import jinvader.common.AbstractSpace;
@@ -20,8 +23,8 @@ class DefaultLaserCannon extends AbstractLaserCannon {
       // Draw this.
       g2.setColor(Color.GREEN);
       g2.fill(asRectangle());
-      // Draw a laser.
-      getLaser().draw(g2);
+      // Draw lasers.
+      getLasers().forEach(laser -> laser.draw(g2));
       return;
     }
     throw (new RuntimeException("Drawing failed because it is not a Graphics2D instance."));
@@ -43,7 +46,16 @@ class DefaultLaserCannon extends AbstractLaserCannon {
   }
 
   @Override
-  protected AbstractLaser newLaser() {
-    return new DefaultLaser(this);
+  protected long fireInterval() {
+    return 255L;
+  }
+
+  @Override
+  protected List<AbstractLaser> newLasers() {
+    List<AbstractLaser> lasers = new ArrayList<>();
+    for (int i = 0; i < 10; i++) {
+      lasers.add(new DefaultLaser(this));
+    }
+    return Collections.unmodifiableList(lasers);
   }
 }

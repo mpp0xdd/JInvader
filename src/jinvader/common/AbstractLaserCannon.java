@@ -2,17 +2,20 @@ package jinvader.common;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.List;
 
 public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   private final AbstractSpace space;
   private final Point point;
-  private final AbstractLaser laser;
+  private final List<AbstractLaser> lasers;
+  private long lastFireTimeMillis;
 
   public AbstractLaserCannon(AbstractSpace space, Point point) {
     this.space = space;
     this.point = new Point(point);
-    this.laser = newLaser();
+    this.lasers = newLasers();
+    this.lastFireTimeMillis = 0L;
   }
 
   @Override
@@ -45,13 +48,26 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
   }
 
   public void fire() {
-    laser.fire();
+    if (System.currentTimeMillis() - lastFireTimeMillis < fireInterval()) {
+      return;
+    }
+
+    lasers.stream()
+        .filter(AbstractLaser::isFireable)
+        .findFirst()
+        .ifPresent(
+            laser -> {
+              laser.fire();
+              lastFireTimeMillis = System.currentTimeMillis();
+            });
   }
 
-  protected abstract AbstractLaser newLaser();
+  protected abstract long fireInterval();
 
-  protected AbstractLaser getLaser() {
-    return laser;
+  protected abstract List<AbstractLaser> newLasers();
+
+  protected List<AbstractLaser> getLasers() {
+    return lasers;
   }
 
   AbstractSpace getSpace() {

@@ -11,11 +11,13 @@ public class MainScreen extends GameScreen implements KeyListener {
   private final AbstractSpace space;
   private Keystroke leftKey;
   private Keystroke rightKey;
+  private Keystroke spaceKey;
 
   public MainScreen(AbstractSpace space) {
     this.space = space;
     this.leftKey = Keystroke.NOT_PRESSED;
     this.rightKey = Keystroke.NOT_PRESSED;
+    this.spaceKey = Keystroke.NOT_PRESSED;
     setScreenSize(space.width(), space.height());
     setFocusable(true);
     addKeyListener(this);
@@ -31,6 +33,8 @@ public class MainScreen extends GameScreen implements KeyListener {
   protected void runGameLoop() {
     if (leftKey.isPressed()) space.moveLaserCannonToLeft();
     if (rightKey.isPressed()) space.moveLaserCannonToRight();
+    if (spaceKey.isPressed()) space.fireLaserCannon();
+    space.moveLaser();
     repaint();
   }
 
@@ -42,6 +46,7 @@ public class MainScreen extends GameScreen implements KeyListener {
     switch (e.getKeyCode()) {
       case KeyEvent.VK_LEFT -> leftKey = Keystroke.PRESSED;
       case KeyEvent.VK_RIGHT -> rightKey = Keystroke.PRESSED;
+      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.PRESSED;
     }
   }
 
@@ -50,6 +55,7 @@ public class MainScreen extends GameScreen implements KeyListener {
     switch (e.getKeyCode()) {
       case KeyEvent.VK_LEFT -> leftKey = Keystroke.NOT_PRESSED;
       case KeyEvent.VK_RIGHT -> rightKey = Keystroke.NOT_PRESSED;
+      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.NOT_PRESSED;
     }
   }
 

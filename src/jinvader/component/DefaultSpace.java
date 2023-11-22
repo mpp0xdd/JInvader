@@ -15,6 +15,7 @@ public class DefaultSpace extends AbstractSpace {
       g2.setColor(Color.BLACK);
       g2.fill(asRectangle());
       getLaserCannon().draw(g2);
+      getLaserCannon().getLaser().draw(g2);
       return;
     }
     throw (new RuntimeException("Drawing failed because it is not a Graphics2D instance."));

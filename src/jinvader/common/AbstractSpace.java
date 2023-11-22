@@ -33,6 +33,14 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     laserCannon.moveRight();
   }
 
+  public final void fireLaserCannon() {
+    laserCannon.fire();
+  }
+
+  public final void moveLaser() {
+    laserCannon.getLaser().move();
+  }
+
   protected final AbstractLaserCannon getLaserCannon() {
     return laserCannon;
   }

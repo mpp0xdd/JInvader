@@ -7,10 +7,12 @@ public abstract class AbstractLaserCannon implements Drawable, Rectangular {
 
   private final AbstractSpace space;
   private final Point point;
+  private final AbstractLaser laser;
 
   public AbstractLaserCannon(AbstractSpace space, Point point) {
     this.space = space;
     this.point = new Point(point);
+    this.laser = newLaser();
   }
 
   @Override
@@ -30,6 +32,10 @@ public abstract class AbstractLaserCannon implements Drawable, Rectangular {
 
   public abstract int speed();
 
+  public AbstractLaser getLaser() {
+    return laser;
+  }
+
   public void moveLeft() {
     point.translate(-speed(), 0);
     if (!space.asRectangle().contains(this.asRectangle())) {
@@ -42,5 +48,15 @@ public abstract class AbstractLaserCannon implements Drawable, Rectangular {
     if (!space.asRectangle().contains(this.asRectangle())) {
       point.x = space.width() - this.width();
     }
+  }
+
+  public void fire() {
+    laser.fire();
+  }
+
+  protected abstract AbstractLaser newLaser();
+
+  AbstractSpace getSpace() {
+    return space;
   }
 }

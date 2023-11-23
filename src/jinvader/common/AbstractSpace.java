@@ -4,9 +4,11 @@ import java.awt.Rectangle;
 
 public abstract class AbstractSpace implements InvaderComponent {
 
+  private final AbstractAlien alien;
   private final AbstractLaserCannon laserCannon;
 
   public AbstractSpace() {
+    this.alien = newAlien();
     this.laserCannon = newLaserCannon();
   }
 
@@ -41,9 +43,15 @@ public abstract class AbstractSpace implements InvaderComponent {
     laserCannon.getLasers().forEach(AbstractLaser::move);
   }
 
+  protected AbstractAlien getAlien() {
+    return alien;
+  }
+
   protected final AbstractLaserCannon getLaserCannon() {
     return laserCannon;
   }
+
+  protected abstract AbstractAlien newAlien();
 
   protected abstract AbstractLaserCannon newLaserCannon();
 }

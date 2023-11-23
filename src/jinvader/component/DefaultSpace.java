@@ -7,6 +7,7 @@ import java.awt.Point;
 import jinvader.common.AbstractAlien;
 import jinvader.common.AbstractLaserCannon;
 import jinvader.common.AbstractSpace;
+import jinvader.common.IntRange;
 
 public class DefaultSpace extends AbstractSpace {
 
@@ -34,7 +35,7 @@ public class DefaultSpace extends AbstractSpace {
 
   @Override
   protected AbstractAlien newAlien() {
-    return new DefaultAlien(this, new Point(100, 100));
+    return new DefaultAlien(this, new Point(100, 100), IntRange.of(100, 300));
   }
 
   @Override

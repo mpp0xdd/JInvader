@@ -6,11 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import jinvader.common.AbstractAlien;
 import jinvader.common.AbstractSpace;
+import jinvader.common.IntRange;
 
 class DefaultAlien extends AbstractAlien {
 
-  public DefaultAlien(AbstractSpace space, Point point) {
-    super(space, point);
+  public DefaultAlien(AbstractSpace space, Point point, IntRange horizontalRange) {
+    super(space, point, horizontalRange);
   }
 
   @Override
@@ -31,5 +32,10 @@ class DefaultAlien extends AbstractAlien {
   @Override
   public int height() {
     return 10;
+  }
+
+  @Override
+  public int speed() {
+    return 8;
   }
 }

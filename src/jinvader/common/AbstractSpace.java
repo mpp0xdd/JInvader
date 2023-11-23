@@ -39,6 +39,10 @@ public abstract class AbstractSpace implements InvaderComponent {
     laserCannon.fire();
   }
 
+  public final void moveAlien() {
+    alien.move();
+  }
+
   public final void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
   }

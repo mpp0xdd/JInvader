@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import jinvader.common.AbstractAlien;
 import jinvader.common.AbstractLaserCannon;
 import jinvader.common.AbstractSpace;
@@ -16,7 +19,7 @@ public class DefaultSpace extends AbstractSpace {
     if (g instanceof Graphics2D g2) {
       g2.setColor(Color.BLACK);
       g2.fill(asRectangle());
-      getAlien().draw(g2);
+      getAliens().forEach(alien -> alien.draw(g2));
       getLaserCannon().draw(g2);
       return;
     }
@@ -34,8 +37,34 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected AbstractAlien newAlien() {
-    return new DefaultAlien(this, new Point(100, 100), IntRange.of(100, 300));
+  protected List<AbstractAlien> newAliens() {
+    List<AbstractAlien> aliens = new ArrayList<>();
+    final int rows = 5;
+    final int columns = 11;
+    final int margin = 25;
+    final int moveLength = 150;
+    final Point point = new Point(50, 50);
+
+    List<AbstractAlien> firstRow = new ArrayList<>();
+    for (int j = 0; j < columns; j++) {
+      AbstractAlien alien =
+          new DefaultAlien(this, point, IntRange.of(point.x, point.x + moveLength));
+      firstRow.add(alien);
+      point.translate(alien.width() + margin, 0);
+    }
+    aliens.addAll(firstRow);
+
+    for (int i = 1; i < rows; i++) {
+      List<AbstractAlien> row = new ArrayList<>();
+      point.y = firstRow.get(0).y() + (firstRow.get(0).height() + margin) * i;
+      for (int j = 0; j < columns; j++) {
+        point.x = firstRow.get(j).x();
+        row.add(new DefaultAlien(this, point, IntRange.of(point.x, point.x + moveLength)));
+      }
+      aliens.addAll(row);
+    }
+
+    return Collections.unmodifiableList(aliens);
   }
 
   @Override

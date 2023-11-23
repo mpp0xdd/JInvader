@@ -1,14 +1,15 @@
 package jinvader.common;
 
 import java.awt.Rectangle;
+import java.util.List;
 
 public abstract class AbstractSpace implements InvaderComponent {
 
-  private final AbstractAlien alien;
+  private final List<AbstractAlien> aliens;
   private final AbstractLaserCannon laserCannon;
 
   public AbstractSpace() {
-    this.alien = newAlien();
+    this.aliens = newAliens();
     this.laserCannon = newLaserCannon();
   }
 
@@ -39,23 +40,23 @@ public abstract class AbstractSpace implements InvaderComponent {
     laserCannon.fire();
   }
 
-  public final void moveAlien() {
-    alien.move();
+  public final void moveAliens() {
+    aliens.forEach(AbstractAlien::move);
   }
 
   public final void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
   }
 
-  protected AbstractAlien getAlien() {
-    return alien;
+  protected List<AbstractAlien> getAliens() {
+    return aliens;
   }
 
   protected final AbstractLaserCannon getLaserCannon() {
     return laserCannon;
   }
 
-  protected abstract AbstractAlien newAlien();
+  protected abstract List<AbstractAlien> newAliens();
 
   protected abstract AbstractLaserCannon newLaserCannon();
 }

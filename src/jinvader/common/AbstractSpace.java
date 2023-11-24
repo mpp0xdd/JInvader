@@ -6,10 +6,12 @@ import java.util.List;
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
   private final List<AbstractAlien> aliens;
+  private final AbstractLaser aliensLaser;
   private final AbstractLaserCannon laserCannon;
 
   public AbstractSpace() {
     this.aliens = newAliens();
+    this.aliensLaser = newAliensLaser();
     this.laserCannon = newLaserCannon();
   }
 
@@ -46,6 +48,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   public final void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
+    aliensLaser.move();
   }
 
   public final void defeatAliens() {
@@ -64,8 +67,16 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
             });
   }
 
+  public final void fireAliensLaser() {
+    aliensLaser.fire();
+  }
+
   protected List<AbstractAlien> getAliens() {
     return aliens;
+  }
+
+  protected AbstractLaser getAliensLaser() {
+    return aliensLaser;
   }
 
   protected final AbstractLaserCannon getLaserCannon() {
@@ -73,6 +84,8 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   protected abstract List<AbstractAlien> newAliens();
+
+  protected abstract AbstractLaser newAliensLaser();
 
   protected abstract AbstractLaserCannon newLaserCannon();
 }

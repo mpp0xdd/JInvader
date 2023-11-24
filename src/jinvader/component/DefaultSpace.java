@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jinvader.common.AbstractAlien;
+import jinvader.common.AbstractLaser;
 import jinvader.common.AbstractLaserCannon;
 import jinvader.common.AbstractSpace;
 import jinvader.common.IntRange;
@@ -20,6 +21,7 @@ public class DefaultSpace extends AbstractSpace {
       g2.setColor(Color.BLACK);
       g2.fill(asRectangle());
       getAliens().forEach(alien -> alien.draw(g2));
+      getAliensLaser().draw(g2);
       getLaserCannon().draw(g2);
       return;
     }
@@ -65,6 +67,11 @@ public class DefaultSpace extends AbstractSpace {
     }
 
     return Collections.unmodifiableList(aliens);
+  }
+
+  @Override
+  protected AbstractLaser newAliensLaser() {
+    return new DefaultAliensLaser(getAliens().get(0));
   }
 
   @Override

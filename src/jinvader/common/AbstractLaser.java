@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
-  private final InvaderComponent battery;
+  protected final InvaderComponent battery;
   protected final Point point;
 
   public AbstractLaser(InvaderComponent battery) {
@@ -47,11 +47,7 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
     point.move(Integer.MIN_VALUE, Integer.MIN_VALUE);
   }
 
-  public void fire() {
-    if (isFireable()) {
-      point.move(battery.x() + battery.width() / 2, battery.y());
-    }
-  }
+  public abstract void fire();
 
   public abstract void move();
 }

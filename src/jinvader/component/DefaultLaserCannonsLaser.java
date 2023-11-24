@@ -23,6 +23,13 @@ class DefaultLaserCannonsLaser extends AbstractLaser {
   }
 
   @Override
+  public void fire() {
+    if (isFireable()) {
+      point.move(battery.x() + battery.width() / 2, battery.y());
+    }
+  }
+
+  @Override
   public void move() {
     if (isFiring()) {
       point.translate(0, -speed());

@@ -4,8 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Objects;
 
-public abstract class AbstractLaser<C extends InvaderComponent>
-    implements InvaderComponent, Speedy {
+abstract class AbstractLaser<C extends InvaderComponent> implements InvaderComponent, Speedy {
 
   private C battery;
   protected final Point point;

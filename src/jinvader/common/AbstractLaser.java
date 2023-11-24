@@ -5,18 +5,18 @@ import java.awt.Rectangle;
 
 public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
-  private final AbstractLaserCannon laserCannon;
+  private final InvaderComponent battery;
   protected final Point point;
 
-  public AbstractLaser(AbstractLaserCannon laserCannon) {
-    this.laserCannon = laserCannon;
+  public AbstractLaser(InvaderComponent battery) {
+    this.battery = battery;
     this.point = new Point();
     enableToFire();
   }
 
   @Override
   public AbstractSpace getSpace() {
-    return laserCannon.getSpace();
+    return battery.getSpace();
   }
 
   @Override
@@ -49,7 +49,7 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
   public void fire() {
     if (isFireable()) {
-      point.move(laserCannon.x() + laserCannon.width() / 2, laserCannon.y());
+      point.move(battery.x() + battery.width() / 2, battery.y());
     }
   }
 

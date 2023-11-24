@@ -54,7 +54,7 @@ class DefaultLaserCannon extends AbstractLaserCannon {
   protected List<AbstractLaser> newLasers() {
     List<AbstractLaser> lasers = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
-      lasers.add(new DefaultLaser(this));
+      lasers.add(new DefaultLaserCannonsLaser(this));
     }
     return Collections.unmodifiableList(lasers);
   }

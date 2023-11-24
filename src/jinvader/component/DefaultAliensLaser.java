@@ -49,6 +49,6 @@ class DefaultAliensLaser extends AbstractAliensLaser {
 
   @Override
   public int speed() {
-    return 15;
+    return 5;
   }
 }

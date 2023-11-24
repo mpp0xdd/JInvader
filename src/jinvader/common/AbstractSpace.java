@@ -42,6 +42,10 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     laserCannon.fire();
   }
 
+  public final void fireAliensLaser() {
+    aliensLaser.fire();
+  }
+
   public final void moveAliens() {
     aliens.forEach(AbstractAlien::move);
   }
@@ -65,10 +69,6 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
                         laser.enableToFire();
                       });
             });
-  }
-
-  public final void fireAliensLaser() {
-    aliensLaser.fire();
   }
 
   protected List<AbstractAlien> getAliens() {

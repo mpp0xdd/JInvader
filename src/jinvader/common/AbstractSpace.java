@@ -2,17 +2,20 @@ package jinvader.common;
 
 import java.awt.Rectangle;
 import java.util.List;
+import java.util.Random;
 
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
   private final List<AbstractAlien> aliens;
   private final List<AbstractAliensLaser> aliensLasers;
   private final AbstractLaserCannon laserCannon;
+  private final Random random;
 
   public AbstractSpace() {
     this.aliens = newAliens();
     this.aliensLasers = newAliensLasers();
     this.laserCannon = newLaserCannon();
+    this.random = new Random();
   }
 
   @Override
@@ -51,7 +54,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
         .forEach(
             laser -> {
               aliveAliens.stream()
-                  .skip((long) (Math.random() * aliveAliens.size()))
+                  .skip(random.nextLong(aliveAliens.size()))
                   .findFirst()
                   .ifPresent(laser::setBattery);
               laser.fire();

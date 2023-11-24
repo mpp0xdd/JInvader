@@ -21,7 +21,7 @@ public class DefaultSpace extends AbstractSpace {
       g2.setColor(Color.BLACK);
       g2.fill(asRectangle());
       getAliens().forEach(alien -> alien.draw(g2));
-      getAliensLaser().draw(g2);
+      getAliensLasers().forEach(laser -> laser.draw(g2));
       getLaserCannon().draw(g2);
       return;
     }
@@ -70,8 +70,12 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected AbstractAliensLaser newAliensLaser() {
-    return new DefaultAliensLaser(getAliens().get(0));
+  protected List<AbstractAliensLaser> newAliensLasers() {
+    List<AbstractAliensLaser> aliensLasers = new ArrayList<>();
+    for (int i = 0; i < 25; i++) {
+      aliensLasers.add(new DefaultAliensLaser(getAliens().get(0)));
+    }
+    return aliensLasers;
   }
 
   @Override

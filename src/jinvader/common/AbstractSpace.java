@@ -1,19 +1,17 @@
 package jinvader.common;
 
 import java.awt.Rectangle;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
   private final List<AbstractAlien> aliens;
-  private final AbstractAliensLaser aliensLaser;
+  private final List<AbstractAliensLaser> aliensLasers;
   private final AbstractLaserCannon laserCannon;
 
   public AbstractSpace() {
     this.aliens = newAliens();
-    this.aliensLaser = newAliensLaser();
+    this.aliensLasers = newAliensLasers();
     this.laserCannon = newLaserCannon();
   }
 
@@ -44,12 +42,20 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     laserCannon.fire();
   }
 
-  public final void fireAliensLaser() {
-    List<AbstractAlien> aliveAliens =
-        aliens.stream().filter(AbstractAlien::isAlive).collect(Collectors.toList());
-    Collections.shuffle(aliveAliens);
-    aliveAliens.stream().findFirst().ifPresent(aliensLaser::setBattery);
-    aliensLaser.fire();
+  public final void fireAliensLasers() {
+    List<AbstractAlien> aliveAliens = aliens.stream().filter(AbstractAlien::isAlive).toList();
+    if (aliveAliens.isEmpty()) return;
+
+    aliensLasers.stream()
+        .filter(AbstractAliensLaser::isFireable)
+        .forEach(
+            laser -> {
+              aliveAliens.stream()
+                  .skip((long) (Math.random() * aliveAliens.size()))
+                  .findFirst()
+                  .ifPresent(laser::setBattery);
+              laser.fire();
+            });
   }
 
   public final void moveAliens() {
@@ -58,7 +64,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   public final void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
-    aliensLaser.move();
+    aliensLasers.forEach(AbstractAliensLaser::move);
   }
 
   public final void defeatAliens() {
@@ -81,8 +87,8 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     return aliens;
   }
 
-  protected AbstractAliensLaser getAliensLaser() {
-    return aliensLaser;
+  protected List<AbstractAliensLaser> getAliensLasers() {
+    return aliensLasers;
   }
 
   protected final AbstractLaserCannon getLaserCannon() {
@@ -91,7 +97,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   protected abstract List<AbstractAlien> newAliens();
 
-  protected abstract AbstractAliensLaser newAliensLaser();
+  protected abstract List<AbstractAliensLaser> newAliensLasers();
 
   protected abstract AbstractLaserCannon newLaserCannon();
 }

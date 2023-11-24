@@ -37,7 +37,7 @@ public class MainScreen extends GameScreen implements KeyListener {
     space.moveAliens();
     space.moveLasers();
     space.defeatAliens();
-    space.fireAliensLaser();
+    space.fireAliensLasers();
     repaint();
   }
 

@@ -56,7 +56,11 @@ public abstract class AbstractSpace implements InvaderComponent {
               aliens.stream()
                   .filter(AbstractAlien::isAlive)
                   .filter(alien -> alien.asRectangle().intersects(laser.asRectangle()))
-                  .forEach(AbstractAlien::die);
+                  .forEach(
+                      alien -> {
+                        alien.die();
+                        laser.enableToFire();
+                      });
             });
   }
 

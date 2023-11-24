@@ -10,7 +10,8 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
   public AbstractLaser(AbstractLaserCannon laserCannon) {
     this.laserCannon = laserCannon;
-    this.point = new Point(Integer.MIN_VALUE, Integer.MIN_VALUE);
+    this.point = new Point();
+    enableToFire();
   }
 
   @Override
@@ -35,6 +36,10 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
   public boolean isFiring() {
     return !isFireable();
+  }
+
+  public void enableToFire() {
+    point.move(Integer.MIN_VALUE, Integer.MIN_VALUE);
   }
 
   public void fire() {

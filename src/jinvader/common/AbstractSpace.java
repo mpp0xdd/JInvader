@@ -79,7 +79,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
             laser -> {
               aliens.stream()
                   .filter(AbstractAlien::isAlive)
-                  .filter(alien -> alien.asRectangle().intersects(laser.asRectangle()))
+                  .filter(alien -> intersects(alien, laser))
                   .forEach(
                       alien -> {
                         alien.die();
@@ -91,7 +91,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   public final void defeatLaserCannon() {
     aliensLasers.stream()
         .filter(AbstractAliensLaser::isFiring)
-        .filter(laser -> laser.asRectangle().intersects(laserCannon.asRectangle()))
+        .filter(laser -> intersects(laser, laserCannon))
         .findFirst()
         .ifPresent(
             laser -> {
@@ -122,5 +122,9 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     this.aliens = newAliens();
     this.aliensLasers = newAliensLasers();
     this.laserCannon = newLaserCannon();
+  }
+
+  private boolean intersects(Rectangular r1, Rectangular r2) {
+    return r1.asRectangle().intersects(r2.asRectangle());
   }
 }

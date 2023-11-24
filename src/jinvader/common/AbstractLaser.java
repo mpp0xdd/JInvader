@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
   private final AbstractLaserCannon laserCannon;
-  private final Point point;
+  protected final Point point;
 
   public AbstractLaser(AbstractLaserCannon laserCannon) {
     this.laserCannon = laserCannon;
@@ -48,9 +48,5 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
     }
   }
 
-  public void move() {
-    if (!isFireable()) {
-      point.translate(0, -speed());
-    }
-  }
+  public abstract void move();
 }

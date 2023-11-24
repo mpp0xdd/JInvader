@@ -23,6 +23,13 @@ class DefaultLaser extends AbstractLaser {
   }
 
   @Override
+  public void move() {
+    if (isFiring()) {
+      point.translate(0, -speed());
+    }
+  }
+
+  @Override
   public int width() {
     return 2;
   }

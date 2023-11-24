@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jinvader.common.AbstractAlien;
-import jinvader.common.AbstractLaser;
+import jinvader.common.AbstractAliensLaser;
 import jinvader.common.AbstractLaserCannon;
 import jinvader.common.AbstractSpace;
 import jinvader.common.IntRange;
@@ -70,7 +70,7 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected AbstractLaser<?> newAliensLaser() {
+  protected AbstractAliensLaser newAliensLaser() {
     return new DefaultAliensLaser(getAliens().get(0));
   }
 

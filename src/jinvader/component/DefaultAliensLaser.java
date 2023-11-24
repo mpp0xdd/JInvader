@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import jinvader.common.AbstractAlien;
-import jinvader.common.AbstractLaser;
+import jinvader.common.AbstractAliensLaser;
 
-class DefaultAliensLaser extends AbstractLaser<AbstractAlien> {
+class DefaultAliensLaser extends AbstractAliensLaser {
 
   public DefaultAliensLaser(AbstractAlien alien) {
     super(alien);

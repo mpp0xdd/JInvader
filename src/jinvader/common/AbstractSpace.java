@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
   private final List<AbstractAlien> aliens;
-  private final AbstractLaser<?> aliensLaser;
+  private final AbstractAliensLaser aliensLaser;
   private final AbstractLaserCannon laserCannon;
 
   public AbstractSpace() {
@@ -75,7 +75,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     return aliens;
   }
 
-  protected AbstractLaser<?> getAliensLaser() {
+  protected AbstractAliensLaser getAliensLaser() {
     return aliensLaser;
   }
 
@@ -85,7 +85,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   protected abstract List<AbstractAlien> newAliens();
 
-  protected abstract AbstractLaser<?> newAliensLaser();
+  protected abstract AbstractAliensLaser newAliensLaser();
 
   protected abstract AbstractLaserCannon newLaserCannon();
 }

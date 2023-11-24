@@ -7,8 +7,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import jinvader.common.AbstractLaser;
 import jinvader.common.AbstractLaserCannon;
+import jinvader.common.AbstractLaserCannonsLaser;
 import jinvader.common.AbstractSpace;
 
 class DefaultLaserCannon extends AbstractLaserCannon {
@@ -51,8 +51,8 @@ class DefaultLaserCannon extends AbstractLaserCannon {
   }
 
   @Override
-  protected List<AbstractLaser<?>> newLasers() {
-    List<AbstractLaser<?>> lasers = new ArrayList<>();
+  protected List<AbstractLaserCannonsLaser> newLasers() {
+    List<AbstractLaserCannonsLaser> lasers = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
       lasers.add(new DefaultLaserCannonsLaser(this));
     }

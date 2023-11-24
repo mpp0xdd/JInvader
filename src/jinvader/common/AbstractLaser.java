@@ -2,15 +2,16 @@ package jinvader.common;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
-  protected final InvaderComponent battery;
+  private InvaderComponent battery;
   protected final Point point;
 
   public AbstractLaser(InvaderComponent battery) {
-    this.battery = battery;
     this.point = new Point();
+    setBattery(battery);
     enableToFire();
   }
 
@@ -50,4 +51,12 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
   public abstract void fire();
 
   public abstract void move();
+
+  public InvaderComponent getBattery() {
+    return battery;
+  }
+
+  protected void setBattery(InvaderComponent battery) {
+    this.battery = Objects.requireNonNull(battery);
+  }
 }

@@ -31,6 +31,10 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     return 0;
   }
 
+  public boolean isGameOver() {
+    return aliens.stream().filter(AbstractAlien::isAlive).count() == 0L;
+  }
+
   public final void moveLaserCannonToLeft() {
     laserCannon.moveLeft();
   }

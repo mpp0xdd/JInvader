@@ -1,12 +1,14 @@
 package jinvader.component;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import jglib.util.GameUtilities;
 import jinvader.common.AbstractAlien;
 import jinvader.common.AbstractAliensLaser;
 import jinvader.common.AbstractLaserCannon;
@@ -23,6 +25,11 @@ public class DefaultSpace extends AbstractSpace {
       getAliens().forEach(alien -> alien.draw(g2));
       getAliensLasers().forEach(laser -> laser.draw(g2));
       getLaserCannon().draw(g2);
+      if (isGameOver()) {
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 43));
+        GameUtilities.drawStringAfterCentering(g2, width() / 2, height() / 2, "Game Over!");
+      }
       return;
     }
     throw (new RuntimeException("Drawing failed because it is not a Graphics2D instance."));

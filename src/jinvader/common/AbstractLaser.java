@@ -15,6 +15,11 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
   }
 
   @Override
+  public AbstractSpace getSpace() {
+    return laserCannon.getSpace();
+  }
+
+  @Override
   public final Rectangle asRectangle() {
     return new Rectangle(x(), y(), width(), height());
   }
@@ -30,7 +35,7 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
   }
 
   public boolean isFireable() {
-    Rectangle spaceRect = laserCannon.getSpace().asRectangle();
+    Rectangle spaceRect = getSpace().asRectangle();
     return !spaceRect.intersects(this.asRectangle());
   }
 

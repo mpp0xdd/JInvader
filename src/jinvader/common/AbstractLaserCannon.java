@@ -19,6 +19,11 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
   }
 
   @Override
+  public AbstractSpace getSpace() {
+    return space;
+  }
+
+  @Override
   public final Rectangle asRectangle() {
     return new Rectangle(x(), y(), width(), height());
   }
@@ -68,9 +73,5 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   protected List<AbstractLaser> getLasers() {
     return lasers;
-  }
-
-  AbstractSpace getSpace() {
-    return space;
   }
 }

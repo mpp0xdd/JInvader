@@ -82,7 +82,7 @@ public class DefaultSpace extends AbstractSpace {
     for (int i = 0; i < 25; i++) {
       aliensLasers.add(new DefaultAliensLaser(getAliens().get(0)));
     }
-    return aliensLasers;
+    return Collections.unmodifiableList(aliensLasers);
   }
 
   @Override

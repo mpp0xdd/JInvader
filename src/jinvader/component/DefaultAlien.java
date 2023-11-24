@@ -16,6 +16,8 @@ class DefaultAlien extends AbstractAlien {
 
   @Override
   public void draw(Graphics g) {
+    if (!isAlive()) return;
+
     if (g instanceof Graphics2D g2) {
       g2.setColor(Color.WHITE);
       g2.fill(asRectangle());

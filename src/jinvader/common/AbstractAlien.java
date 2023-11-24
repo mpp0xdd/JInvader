@@ -9,12 +9,14 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
   private final Point point;
   private final IntRange horizontalRange;
   private Direction direction;
+  private boolean isAlive;
 
   public AbstractAlien(AbstractSpace space, Point point, IntRange horizontalRange) {
     this.space = space;
     this.point = new Point(point);
     this.horizontalRange = horizontalRange;
     this.direction = Direction.RIGHT;
+    this.isAlive = true;
   }
 
   @Override
@@ -32,7 +34,17 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
     return point.y;
   }
 
+  public boolean isAlive() {
+    return isAlive;
+  }
+
+  public void die() {
+    isAlive = false;
+  }
+
   public void move() {
+    if (!isAlive()) return;
+
     switch (direction) {
       case LEFT -> {
         point.translate(-speed(), 0);

@@ -33,6 +33,10 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
     return !spaceRect.intersects(this.asRectangle());
   }
 
+  public boolean isFiring() {
+    return !isFireable();
+  }
+
   public void fire() {
     if (isFireable()) {
       point.move(laserCannon.x() + laserCannon.width() / 2, laserCannon.y());

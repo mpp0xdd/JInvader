@@ -1,7 +1,9 @@
 package jinvader.common;
 
 import java.awt.Rectangle;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
@@ -43,6 +45,10 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public final void fireAliensLaser() {
+    List<AbstractAlien> aliveAliens =
+        aliens.stream().filter(AbstractAlien::isAlive).collect(Collectors.toList());
+    Collections.shuffle(aliveAliens);
+    aliveAliens.stream().findFirst().ifPresent(aliensLaser::setBattery);
     aliensLaser.fire();
   }
 

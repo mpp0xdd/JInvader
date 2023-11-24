@@ -23,6 +23,11 @@ class DefaultAliensLaser extends AbstractLaser<AbstractAlien> {
   }
 
   @Override
+  public boolean isFireable() {
+    return super.isFireable() && getBattery().isAlive();
+  }
+
+  @Override
   public void fire() {
     if (isFireable()) {
       point.move(

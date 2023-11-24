@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import jinvader.common.AbstractLaser;
 import jinvader.common.AbstractLaserCannon;
 
-class DefaultLaserCannonsLaser extends AbstractLaser {
+class DefaultLaserCannonsLaser extends AbstractLaser<AbstractLaserCannon> {
 
   public DefaultLaserCannonsLaser(AbstractLaserCannon laserCannon) {
     super(laserCannon);

@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import jinvader.common.AbstractAlien;
 import jinvader.common.AbstractLaser;
 
-class DefaultAliensLaser extends AbstractLaser {
+class DefaultAliensLaser extends AbstractLaser<AbstractAlien> {
 
   public DefaultAliensLaser(AbstractAlien alien) {
     super(alien);

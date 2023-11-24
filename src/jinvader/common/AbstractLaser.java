@@ -4,12 +4,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Objects;
 
-public abstract class AbstractLaser implements InvaderComponent, Speedy {
+public abstract class AbstractLaser<C extends InvaderComponent>
+    implements InvaderComponent, Speedy {
 
-  private InvaderComponent battery;
+  private C battery;
   protected final Point point;
 
-  public AbstractLaser(InvaderComponent battery) {
+  public AbstractLaser(C battery) {
     this.point = new Point();
     setBattery(battery);
     enableToFire();
@@ -52,11 +53,11 @@ public abstract class AbstractLaser implements InvaderComponent, Speedy {
 
   public abstract void move();
 
-  public InvaderComponent getBattery() {
+  public C getBattery() {
     return battery;
   }
 
-  protected void setBattery(InvaderComponent battery) {
+  protected void setBattery(C battery) {
     this.battery = Objects.requireNonNull(battery);
   }
 }

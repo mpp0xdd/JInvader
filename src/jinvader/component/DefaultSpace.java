@@ -70,7 +70,7 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected AbstractLaser newAliensLaser() {
+  protected AbstractLaser<?> newAliensLaser() {
     return new DefaultAliensLaser(getAliens().get(0));
   }
 

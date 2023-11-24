@@ -51,8 +51,8 @@ class DefaultLaserCannon extends AbstractLaserCannon {
   }
 
   @Override
-  protected List<AbstractLaser> newLasers() {
-    List<AbstractLaser> lasers = new ArrayList<>();
+  protected List<AbstractLaser<?>> newLasers() {
+    List<AbstractLaser<?>> lasers = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
       lasers.add(new DefaultLaserCannonsLaser(this));
     }

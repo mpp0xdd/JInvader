@@ -8,7 +8,7 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   private final AbstractSpace space;
   private final Point point;
-  private final List<AbstractLaser> lasers;
+  private final List<AbstractLaser<?>> lasers;
   private long lastFireTimeMillis;
 
   public AbstractLaserCannon(AbstractSpace space, Point point) {
@@ -69,9 +69,9 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   protected abstract long fireInterval();
 
-  protected abstract List<AbstractLaser> newLasers();
+  protected abstract List<AbstractLaser<?>> newLasers();
 
-  protected List<AbstractLaser> getLasers() {
+  protected List<AbstractLaser<?>> getLasers() {
     return lasers;
   }
 }

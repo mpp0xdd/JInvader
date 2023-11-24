@@ -6,15 +6,13 @@ import java.util.Random;
 
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
-  private final List<AbstractAlien> aliens;
-  private final List<AbstractAliensLaser> aliensLasers;
-  private final AbstractLaserCannon laserCannon;
+  private List<AbstractAlien> aliens;
+  private List<AbstractAliensLaser> aliensLasers;
+  private AbstractLaserCannon laserCannon;
   private final Random random;
 
   public AbstractSpace() {
-    this.aliens = newAliens();
-    this.aliensLasers = newAliensLasers();
-    this.laserCannon = newLaserCannon();
+    initializeComponent();
     this.random = new Random();
   }
 
@@ -114,4 +112,10 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   protected abstract List<AbstractAliensLaser> newAliensLasers();
 
   protected abstract AbstractLaserCannon newLaserCannon();
+
+  private void initializeComponent() {
+    this.aliens = newAliens();
+    this.aliensLasers = newAliensLasers();
+    this.laserCannon = newLaserCannon();
+  }
 }

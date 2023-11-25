@@ -43,12 +43,16 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
     return isAlive;
   }
 
+  public boolean isDead() {
+    return !isAlive();
+  }
+
   public void die() {
     isAlive = false;
   }
 
   public void move() {
-    if (!isAlive()) return;
+    if (isDead()) return;
 
     switch (direction) {
       case LEFT -> {

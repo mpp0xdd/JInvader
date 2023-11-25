@@ -38,6 +38,6 @@ class DefaultAlien extends AbstractAlien {
 
   @Override
   public int speed() {
-    return 3;
+    return 1;
   }
 }

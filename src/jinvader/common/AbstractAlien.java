@@ -55,6 +55,7 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
         point.translate(-speed(), 0);
         if (point.x < horizontalRange.startInclusive()) {
           point.x = horizontalRange.startInclusive();
+          point.y += height();
           direction = Direction.RIGHT;
         }
       }
@@ -62,6 +63,7 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
         point.translate(speed(), 0);
         if (point.x + width() > horizontalRange.endInclusive()) {
           point.x = horizontalRange.endInclusive() - width();
+          point.y += height();
           direction = Direction.LEFT;
         }
       }

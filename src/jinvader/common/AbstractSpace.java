@@ -1,6 +1,7 @@
 package jinvader.common;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -56,10 +57,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
         .filter(AbstractLaser::isFireable)
         .forEach(
             laser -> {
-              aliveAliens.stream()
-                  .skip(random.nextLong(aliveAliens.size()))
-                  .findFirst()
-                  .ifPresent(laser::setBattery);
+              randomElement(aliveAliens).ifPresent(laser::setBattery);
               laser.fire();
             });
   }
@@ -123,5 +121,9 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     this.aliens = newAliens();
     this.aliensLasers = newAliensLasers();
     this.laserCannon = newLaserCannon();
+  }
+
+  private <T> Optional<T> randomElement(List<T> list) {
+    return list.stream().skip(random.nextLong(list.size())).findFirst();
   }
 }

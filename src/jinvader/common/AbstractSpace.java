@@ -53,7 +53,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     if (aliveAliens.isEmpty()) return;
 
     aliensLasers.stream()
-        .filter(AbstractAliensLaser::isFireable)
+        .filter(AbstractLaser::isFireable)
         .forEach(
             laser -> {
               aliveAliens.stream()
@@ -70,7 +70,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   public final void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
-    aliensLasers.forEach(AbstractAliensLaser::move);
+    aliensLasers.forEach(AbstractLaser::move);
   }
 
   public final void defeatAliens() {
@@ -91,7 +91,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
 
   public final void defeatLaserCannon() {
     aliensLasers.stream()
-        .filter(AbstractAliensLaser::isFiring)
+        .filter(AbstractLaser::isFiring)
         .filter(laserCannon::intersects)
         .findFirst()
         .ifPresent(

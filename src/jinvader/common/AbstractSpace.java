@@ -1,6 +1,5 @@
 package jinvader.common;
 
-import java.awt.Rectangle;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -15,11 +14,6 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   public AbstractSpace() {
     initializeComponent();
     this.random = new Random();
-  }
-
-  @Override
-  public final Rectangle asRectangle() {
-    return new Rectangle(x(), y(), width(), height());
   }
 
   @Override

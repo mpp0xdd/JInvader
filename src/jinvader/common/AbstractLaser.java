@@ -21,11 +21,6 @@ abstract class AbstractLaser<C extends InvaderComponent> implements InvaderCompo
   }
 
   @Override
-  public final Rectangle asRectangle() {
-    return new Rectangle(x(), y(), width(), height());
-  }
-
-  @Override
   public final int x() {
     return point.x;
   }

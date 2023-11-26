@@ -4,8 +4,6 @@ import java.awt.Rectangle;
 
 public interface Rectangular {
 
-  Rectangle asRectangle();
-
   int x();
 
   int y();
@@ -13,6 +11,10 @@ public interface Rectangular {
   int width();
 
   int height();
+
+  default Rectangle asRectangle() {
+    return new Rectangle(x(), y(), width(), height());
+  }
 
   default boolean intersects(Rectangular other) {
     return this.asRectangle().intersects(other.asRectangle());

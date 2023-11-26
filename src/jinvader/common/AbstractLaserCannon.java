@@ -1,7 +1,6 @@
 package jinvader.common;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.List;
 
 public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
@@ -21,11 +20,6 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
   @Override
   public AbstractSpace getSpace() {
     return space;
-  }
-
-  @Override
-  public final Rectangle asRectangle() {
-    return new Rectangle(x(), y(), width(), height());
   }
 
   @Override

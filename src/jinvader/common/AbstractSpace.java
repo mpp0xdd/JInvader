@@ -36,19 +36,19 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     return false;
   }
 
-  public final void moveLaserCannonToLeft() {
+  public void moveLaserCannonToLeft() {
     laserCannon.moveLeft();
   }
 
-  public final void moveLaserCannonToRight() {
+  public void moveLaserCannonToRight() {
     laserCannon.moveRight();
   }
 
-  public final void fireLaserCannon() {
+  public void fireLaserCannon() {
     laserCannon.fire();
   }
 
-  public final void fireAliensLasers() {
+  public void fireAliensLasers() {
     List<AbstractAlien> aliveAliens = aliens.stream().filter(AbstractAlien::isAlive).toList();
     if (aliveAliens.isEmpty()) return;
 
@@ -61,16 +61,16 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
             });
   }
 
-  public final void moveAliens() {
+  public void moveAliens() {
     aliens.forEach(AbstractAlien::move);
   }
 
-  public final void moveLasers() {
+  public void moveLasers() {
     laserCannon.getLasers().forEach(AbstractLaser::move);
     aliensLasers.forEach(AbstractLaser::move);
   }
 
-  public final void defeatAliens() {
+  public void defeatAliens() {
     laserCannon.getLasers().stream()
         .filter(AbstractLaser::isFiring)
         .forEach(
@@ -86,7 +86,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
             });
   }
 
-  public final void defeatLaserCannon() {
+  public void defeatLaserCannon() {
     aliensLasers.stream()
         .filter(AbstractLaser::isFiring)
         .filter(laserCannon::intersects)
@@ -106,7 +106,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     return aliensLasers;
   }
 
-  protected final AbstractLaserCannon getLaserCannon() {
+  protected AbstractLaserCannon getLaserCannon() {
     return laserCannon;
   }
 

@@ -1,7 +1,6 @@
 package jinvader.common;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.Objects;
 
 abstract class AbstractLaser<C extends InvaderComponent> implements InvaderComponent, Speedy {
@@ -31,8 +30,7 @@ abstract class AbstractLaser<C extends InvaderComponent> implements InvaderCompo
   }
 
   public boolean isFireable() {
-    Rectangle spaceRect = getSpace().asRectangle();
-    return !spaceRect.intersects(this.asRectangle());
+    return !getSpace().intersects(this);
   }
 
   public boolean isFiring() {

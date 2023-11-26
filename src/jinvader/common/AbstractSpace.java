@@ -3,6 +3,7 @@ package jinvader.common;
 import java.awt.Rectangle;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 public abstract class AbstractSpace implements Drawable, Rectangular {
 
@@ -35,7 +36,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     if (aliens.stream().allMatch(AbstractAlien::isDead)) {
       return true;
     }
-    if (aliens.stream().anyMatch(alien -> !intersects(alien, this))) {
+    if (aliens.stream().anyMatch(Predicate.not(this::intersects))) {
       return true;
     }
     return false;
@@ -85,7 +86,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
             laser -> {
               aliens.stream()
                   .filter(AbstractAlien::isAlive)
-                  .filter(alien -> intersects(alien, laser))
+                  .filter(laser::intersects)
                   .forEach(
                       alien -> {
                         alien.die();
@@ -97,7 +98,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   public final void defeatLaserCannon() {
     aliensLasers.stream()
         .filter(AbstractAliensLaser::isFiring)
-        .filter(laser -> intersects(laser, laserCannon))
+        .filter(laserCannon::intersects)
         .findFirst()
         .ifPresent(
             laser -> {
@@ -128,9 +129,5 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
     this.aliens = newAliens();
     this.aliensLasers = newAliensLasers();
     this.laserCannon = newLaserCannon();
-  }
-
-  private boolean intersects(Rectangular r1, Rectangular r2) {
-    return r1.asRectangle().intersects(r2.asRectangle());
   }
 }

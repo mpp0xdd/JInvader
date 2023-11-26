@@ -13,4 +13,8 @@ public interface Rectangular {
   int width();
 
   int height();
+
+  default boolean intersects(Rectangular other) {
+    return this.asRectangle().intersects(other.asRectangle());
+  }
 }

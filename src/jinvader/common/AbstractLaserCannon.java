@@ -34,14 +34,14 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   public void moveLeft() {
     point.translate(-speed(), 0);
-    if (!space.asRectangle().contains(this.asRectangle())) {
+    if (!getSpace().contains(this)) {
       point.x = space.x();
     }
   }
 
   public void moveRight() {
     point.translate(speed(), 0);
-    if (!space.asRectangle().contains(this.asRectangle())) {
+    if (!getSpace().contains(this)) {
       point.x = space.width() - this.width();
     }
   }

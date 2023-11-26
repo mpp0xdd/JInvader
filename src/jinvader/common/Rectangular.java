@@ -16,6 +16,10 @@ public interface Rectangular {
     return new Rectangle(x(), y(), width(), height());
   }
 
+  default boolean contains(Rectangular other) {
+    return this.asRectangle().contains(other.asRectangle());
+  }
+
   default boolean intersects(Rectangular other) {
     return this.asRectangle().intersects(other.asRectangle());
   }

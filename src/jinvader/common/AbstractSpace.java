@@ -71,18 +71,18 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public void defeatAliens() {
-    laserCannon.getLasers().stream()
-        .filter(AbstractLaser::isFiring)
-        .forEach(
-            laser ->
-                aliens.stream()
-                    .filter(AbstractAlien::isAlive)
-                    .filter(laser::intersects)
-                    .forEach(
-                        alien -> {
-                          alien.die();
-                          laser.enableToFire();
-                        }));
+    for (AbstractLaserCannonsLaser laser : laserCannon.getLasers()) {
+      if (laser.isFireable()) continue;
+
+      int defeats = 0;
+      for (AbstractAlien alien : aliens) {
+        if (alien.isAlive() && laser.intersects(alien)) {
+          alien.die();
+          defeats++;
+        }
+      }
+      if (defeats > 0) laser.enableToFire();
+    }
   }
 
   public void defeatLaserCannon() {

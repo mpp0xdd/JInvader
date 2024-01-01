@@ -56,8 +56,7 @@ public class DefaultSpace extends AbstractSpace {
 
     List<AbstractAlien> firstRow = new ArrayList<>();
     for (int j = 0; j < columns; j++) {
-      AbstractAlien alien =
-          new DefaultAlien(this, point, IntRange.of(point.x, point.x + moveLength));
+      AbstractAlien alien = newAlien(point, IntRange.of(point.x, point.x + moveLength));
       firstRow.add(alien);
       point.translate(alien.width() + margin, 0);
     }
@@ -68,7 +67,7 @@ public class DefaultSpace extends AbstractSpace {
       point.y = firstRow.get(0).y() + (firstRow.get(0).height() + margin) * i;
       for (int j = 0; j < columns; j++) {
         point.x = firstRow.get(j).x();
-        row.add(new DefaultAlien(this, point, IntRange.of(point.x, point.x + moveLength)));
+        row.add(newAlien(point, IntRange.of(point.x, point.x + moveLength)));
       }
       aliens.addAll(row);
     }
@@ -88,5 +87,9 @@ public class DefaultSpace extends AbstractSpace {
   @Override
   protected AbstractLaserCannon newLaserCannon() {
     return new DefaultLaserCannon(this, new Point(0, height() - 30));
+  }
+
+  private AbstractAlien newAlien(Point point, IntRange range) {
+    return new DefaultAlien(this, point, range);
   }
 }

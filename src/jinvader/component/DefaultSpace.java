@@ -79,7 +79,7 @@ public class DefaultSpace extends AbstractSpace {
   protected List<AbstractAliensLaser> newAliensLasers() {
     List<AbstractAliensLaser> aliensLasers = new ArrayList<>();
     for (int i = 0; i < 25; i++) {
-      aliensLasers.add(new DefaultAliensLaser(getAliens().get(0)));
+      aliensLasers.add(newAliensLaser());
     }
     return Collections.unmodifiableList(aliensLasers);
   }
@@ -91,5 +91,9 @@ public class DefaultSpace extends AbstractSpace {
 
   private AbstractAlien newAlien(Point point, IntRange range) {
     return new DefaultAlien(this, point, range);
+  }
+
+  private AbstractAliensLaser newAliensLaser() {
+    return new DefaultAliensLaser(getAliens().get(0));
   }
 }

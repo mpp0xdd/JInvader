@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import jinvader.common.AbstractAlien;
-import jinvader.common.AbstractSpace;
+import jinvader.common.Alien;
+import jinvader.common.Space;
 import jinvader.common.IntRange;
 
-class DefaultAlien extends AbstractAlien {
+class DefaultAlien extends Alien {
 
-  public DefaultAlien(AbstractSpace space, Point point, IntRange horizontalRange) {
+  public DefaultAlien(Space space, Point point, IntRange horizontalRange) {
     super(space, point, horizontalRange);
   }
 

@@ -3,12 +3,12 @@ package jinvader.component;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import jinvader.common.AbstractLaserCannon;
-import jinvader.common.AbstractLaserCannonsLaser;
+import jinvader.common.LaserCannon;
+import jinvader.common.LaserCannonsLaser;
 
-class DefaultLaserCannonsLaser extends AbstractLaserCannonsLaser {
+class DefaultLaserCannonsLaser extends LaserCannonsLaser {
 
-  public DefaultLaserCannonsLaser(AbstractLaserCannon laserCannon) {
+  public DefaultLaserCannonsLaser(LaserCannon laserCannon) {
     super(laserCannon);
   }
 

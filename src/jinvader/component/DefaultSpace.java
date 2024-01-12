@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jglib.util.GameUtilities;
-import jinvader.common.AbstractAlien;
-import jinvader.common.AbstractAliensLaser;
-import jinvader.common.AbstractLaserCannon;
-import jinvader.common.AbstractSpace;
+import jinvader.common.Alien;
+import jinvader.common.AliensLaser;
+import jinvader.common.LaserCannon;
+import jinvader.common.Space;
 import jinvader.common.IntRange;
 
-public class DefaultSpace extends AbstractSpace {
+public class DefaultSpace extends Space {
 
   @Override
   public void draw(Graphics g) {
@@ -46,24 +46,24 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected List<AbstractAlien> newAliens() {
-    List<AbstractAlien> aliens = new ArrayList<>();
+  protected List<Alien> newAliens() {
+    List<Alien> aliens = new ArrayList<>();
     final int rows = 5;
     final int columns = 11;
     final int margin = 25;
     final int moveLength = 150;
     final Point point = new Point(50, 50);
 
-    List<AbstractAlien> firstRow = new ArrayList<>();
+    List<Alien> firstRow = new ArrayList<>();
     for (int j = 0; j < columns; j++) {
-      AbstractAlien alien = newAlien(point, IntRange.of(point.x, point.x + moveLength));
+      Alien alien = newAlien(point, IntRange.of(point.x, point.x + moveLength));
       firstRow.add(alien);
       point.translate(alien.width() + margin, 0);
     }
     aliens.addAll(firstRow);
 
     for (int i = 1; i < rows; i++) {
-      List<AbstractAlien> row = new ArrayList<>();
+      List<Alien> row = new ArrayList<>();
       point.y = firstRow.get(0).y() + (firstRow.get(0).height() + margin) * i;
       for (int j = 0; j < columns; j++) {
         point.x = firstRow.get(j).x();
@@ -76,8 +76,8 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected List<AbstractAliensLaser> newAliensLasers() {
-    List<AbstractAliensLaser> aliensLasers = new ArrayList<>();
+  protected List<AliensLaser> newAliensLasers() {
+    List<AliensLaser> aliensLasers = new ArrayList<>();
     for (int i = 0; i < 25; i++) {
       aliensLasers.add(newAliensLaser());
     }
@@ -85,15 +85,15 @@ public class DefaultSpace extends AbstractSpace {
   }
 
   @Override
-  protected AbstractLaserCannon newLaserCannon() {
+  protected LaserCannon newLaserCannon() {
     return new DefaultLaserCannon(this, new Point(0, height() - 30));
   }
 
-  private AbstractAlien newAlien(Point point, IntRange range) {
+  private Alien newAlien(Point point, IntRange range) {
     return new DefaultAlien(this, point, range);
   }
 
-  private AbstractAliensLaser newAliensLaser() {
+  private AliensLaser newAliensLaser() {
     return new DefaultAliensLaser(getAliens().get(0));
   }
 }

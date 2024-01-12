@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public abstract class AbstractSpace implements Drawable, Rectangular {
+public abstract class Space implements Drawable, Rectangular {
 
-  private List<AbstractAlien> aliens;
-  private List<AbstractAliensLaser> aliensLasers;
-  private AbstractLaserCannon laserCannon;
+  private List<Alien> aliens;
+  private List<AliensLaser> aliensLasers;
+  private LaserCannon laserCannon;
   private final Random random;
 
-  public AbstractSpace() {
+  public Space() {
     initializeComponent();
     this.random = new Random();
   }
@@ -27,7 +27,7 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public boolean isGameOver() {
-    if (aliens.stream().allMatch(AbstractAlien::isDead)) {
+    if (aliens.stream().allMatch(Alien::isDead)) {
       return true;
     }
     if (aliens.stream().anyMatch(Predicate.not(this::intersects))) {
@@ -49,11 +49,11 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public void fireAliensLasers() {
-    List<AbstractAlien> aliveAliens = aliens.stream().filter(AbstractAlien::isAlive).toList();
+    List<Alien> aliveAliens = aliens.stream().filter(Alien::isAlive).toList();
     if (aliveAliens.isEmpty()) return;
 
     aliensLasers.stream()
-        .filter(AbstractLaser::isFireable)
+        .filter(Laser::isFireable)
         .forEach(
             laser -> {
               laser.setBattery(randomElement(aliveAliens));
@@ -62,20 +62,20 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public void moveAliens() {
-    aliens.forEach(AbstractAlien::move);
+    aliens.forEach(Alien::move);
   }
 
   public void moveLasers() {
-    laserCannon.getLasers().forEach(AbstractLaser::move);
-    aliensLasers.forEach(AbstractLaser::move);
+    laserCannon.getLasers().forEach(Laser::move);
+    aliensLasers.forEach(Laser::move);
   }
 
   public void defeatAliens() {
-    for (AbstractLaserCannonsLaser laser : laserCannon.getLasers()) {
+    for (LaserCannonsLaser laser : laserCannon.getLasers()) {
       if (laser.isFireable()) continue;
 
       int defeats = 0;
-      for (AbstractAlien alien : aliens) {
+      for (Alien alien : aliens) {
         if (alien.isAlive() && laser.intersects(alien)) {
           alien.die();
           defeats++;
@@ -86,27 +86,27 @@ public abstract class AbstractSpace implements Drawable, Rectangular {
   }
 
   public void defeatLaserCannon() {
-    if (aliensLasers.stream().filter(AbstractLaser::isFiring).anyMatch(laserCannon::intersects))
+    if (aliensLasers.stream().filter(Laser::isFiring).anyMatch(laserCannon::intersects))
       initializeComponent();
   }
 
-  protected List<AbstractAlien> getAliens() {
+  protected List<Alien> getAliens() {
     return aliens;
   }
 
-  protected List<AbstractAliensLaser> getAliensLasers() {
+  protected List<AliensLaser> getAliensLasers() {
     return aliensLasers;
   }
 
-  protected AbstractLaserCannon getLaserCannon() {
+  protected LaserCannon getLaserCannon() {
     return laserCannon;
   }
 
-  protected abstract List<AbstractAlien> newAliens();
+  protected abstract List<Alien> newAliens();
 
-  protected abstract List<AbstractAliensLaser> newAliensLasers();
+  protected abstract List<AliensLaser> newAliensLasers();
 
-  protected abstract AbstractLaserCannon newLaserCannon();
+  protected abstract LaserCannon newLaserCannon();
 
   private void initializeComponent() {
     this.aliens = newAliens();

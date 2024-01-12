@@ -3,19 +3,19 @@ package jinvader.common;
 import java.awt.Point;
 import java.util.Objects;
 
-abstract class AbstractLaser<C extends InvaderComponent> implements InvaderComponent, Speedy {
+abstract class Laser<C extends InvaderComponent> implements InvaderComponent, Speedy {
 
   private C battery;
   protected final Point point;
 
-  public AbstractLaser(C battery) {
+  public Laser(C battery) {
     this.point = new Point();
     setBattery(battery);
     enableToFire();
   }
 
   @Override
-  public AbstractSpace getSpace() {
+  public Space getSpace() {
     return battery.getSpace();
   }
 

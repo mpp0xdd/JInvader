@@ -2,15 +2,15 @@ package jinvader.common;
 
 import java.awt.Point;
 
-public abstract class AbstractAlien implements InvaderComponent, Speedy {
+public abstract class Alien implements InvaderComponent, Speedy {
 
-  private final AbstractSpace space;
+  private final Space space;
   private final Point point;
   private final IntRange horizontalRange;
   private Direction direction;
   private boolean isAlive;
 
-  public AbstractAlien(AbstractSpace space, Point point, IntRange horizontalRange) {
+  public Alien(Space space, Point point, IntRange horizontalRange) {
     this.space = space;
     this.point = new Point(point);
     this.horizontalRange = horizontalRange;
@@ -19,7 +19,7 @@ public abstract class AbstractAlien implements InvaderComponent, Speedy {
   }
 
   @Override
-  public AbstractSpace getSpace() {
+  public Space getSpace() {
     return space;
   }
 

@@ -3,14 +3,14 @@ package jinvader.common;
 import java.awt.Point;
 import java.util.List;
 
-public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
+public abstract class LaserCannon implements InvaderComponent, Speedy {
 
-  private final AbstractSpace space;
+  private final Space space;
   private final Point point;
-  private final List<AbstractLaserCannonsLaser> lasers;
+  private final List<LaserCannonsLaser> lasers;
   private long lastFireTimeMillis;
 
-  public AbstractLaserCannon(AbstractSpace space, Point point) {
+  public LaserCannon(Space space, Point point) {
     this.space = space;
     this.point = new Point(point);
     this.lasers = newLasers();
@@ -18,7 +18,7 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
   }
 
   @Override
-  public AbstractSpace getSpace() {
+  public Space getSpace() {
     return space;
   }
 
@@ -52,7 +52,7 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
     }
 
     lasers.stream()
-        .filter(AbstractLaser::isFireable)
+        .filter(Laser::isFireable)
         .findFirst()
         .ifPresent(
             laser -> {
@@ -63,9 +63,9 @@ public abstract class AbstractLaserCannon implements InvaderComponent, Speedy {
 
   protected abstract long fireInterval();
 
-  protected abstract List<AbstractLaserCannonsLaser> newLasers();
+  protected abstract List<LaserCannonsLaser> newLasers();
 
-  protected List<AbstractLaserCannonsLaser> getLasers() {
+  protected List<LaserCannonsLaser> getLasers() {
     return lasers;
   }
 }

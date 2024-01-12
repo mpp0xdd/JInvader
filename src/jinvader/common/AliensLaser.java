@@ -2,13 +2,13 @@ package jinvader.common;
 
 import java.util.Objects;
 
-public abstract class AbstractAliensLaser extends AbstractLaser<AbstractAlien> {
-  public AbstractAliensLaser(AbstractAlien battery) {
+public abstract class AliensLaser extends Laser<Alien> {
+  public AliensLaser(Alien battery) {
     super(battery);
   }
 
   @Override
-  protected void setBattery(AbstractAlien battery) {
+  protected void setBattery(Alien battery) {
     if (Objects.isNull(getBattery())) {
       super.setBattery(battery);
     } else if (isFireable()) {

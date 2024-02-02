@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import jglib.component.GameScreen;
+import jinvader.common.Keystroke;
 import jinvader.common.Space;
 
 public class MainScreen extends GameScreen implements KeyListener {
@@ -60,16 +61,6 @@ public class MainScreen extends GameScreen implements KeyListener {
       case KeyEvent.VK_LEFT -> leftKey = Keystroke.NOT_PRESSED;
       case KeyEvent.VK_RIGHT -> rightKey = Keystroke.NOT_PRESSED;
       case KeyEvent.VK_SPACE -> spaceKey = Keystroke.NOT_PRESSED;
-    }
-  }
-
-  private enum Keystroke {
-    PRESSED,
-    NOT_PRESSED,
-    ;
-
-    boolean isPressed() {
-      return this.equals(PRESSED);
     }
   }
 }

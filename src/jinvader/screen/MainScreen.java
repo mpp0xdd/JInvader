@@ -3,6 +3,7 @@ package jinvader.screen;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Objects;
 import jglib.component.GameScreen;
 import jinvader.common.Keystroke;
 import jinvader.common.Space;
@@ -15,7 +16,7 @@ public class MainScreen extends GameScreen implements KeyListener {
   private Keystroke spaceKey;
 
   public MainScreen(Space space) {
-    this.space = space;
+    this.space = Objects.requireNonNull(space);
     this.leftKey = Keystroke.NOT_PRESSED;
     this.rightKey = Keystroke.NOT_PRESSED;
     this.spaceKey = Keystroke.NOT_PRESSED;

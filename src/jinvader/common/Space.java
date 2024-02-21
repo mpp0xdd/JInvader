@@ -86,8 +86,11 @@ public abstract class Space implements Drawable, Rectangular {
   }
 
   public void defeatLaserCannon() {
-    if (aliensLasers.stream().filter(Laser::isFiring).anyMatch(laserCannon::intersects))
+    if (aliensLasers.stream() //
+        .filter(Laser::isFiring)
+        .anyMatch(laserCannon::intersects)) {
       initializeComponent();
+    }
   }
 
   protected List<Alien> getAliens() {

@@ -8,12 +8,12 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import jglib.util.GameUtilities;
+import jglib.util.StringDrawer;
 import jinvader.common.Alien;
 import jinvader.common.AliensLaser;
+import jinvader.common.IntRange;
 import jinvader.common.LaserCannon;
 import jinvader.common.Space;
-import jinvader.common.IntRange;
 
 public class DefaultSpace extends Space {
 
@@ -28,7 +28,7 @@ public class DefaultSpace extends Space {
       if (isGameOver()) {
         g2.setColor(Color.WHITE);
         g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 43));
-        GameUtilities.drawStringAfterCentering(g2, width() / 2, height() / 2, "Game Over!");
+        StringDrawer.CENTER.draw(g2, width() / 2, height() / 2, "Game Over!");
       }
       return;
     }

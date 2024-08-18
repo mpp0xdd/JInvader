@@ -26,8 +26,7 @@ public class MainScreen extends GameScreen implements KeyListener {
   }
 
   @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  protected void paintGameComponent(Graphics g) {
     space.draw(g);
   }
 

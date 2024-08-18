@@ -40,7 +40,6 @@ public class MainScreen extends GameScreen implements KeyListener {
     space.defeatAliens();
     space.fireAliensLasers();
     space.defeatLaserCannon();
-    repaint();
   }
 
   @Override

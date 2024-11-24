@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Objects;
 import jglib.component.GameScreen;
-import jinvader.common.Keystroke;
+import jglib.util.model.Keystroke;
 import jinvader.common.Space;
 
 public class MainScreen extends GameScreen implements KeyListener {

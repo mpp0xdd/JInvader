@@ -3,6 +3,8 @@ package jinvader.common;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
+import jglib.util.spec.Drawable;
+import jglib.util.spec.Rectangular;
 
 public abstract class Space implements Drawable, Rectangular {
 

@@ -1,7 +1,7 @@
 package jinvader;
 
-import jglib.base.Game;
 import jglib.component.GameWindow;
+import jglib.core.Game;
 import jinvader.component.DefaultSpace;
 import jinvader.screen.MainScreen;
 

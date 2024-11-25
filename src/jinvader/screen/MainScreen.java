@@ -2,27 +2,41 @@ package jinvader.screen;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Objects;
 import jglib.component.GameScreen;
-import jglib.util.model.Keystroke;
+import jglib.util.model.Key;
+import jglib.util.model.Keyboard;
 import jinvader.common.Space;
 
-public class MainScreen extends GameScreen implements KeyListener {
+public class MainScreen extends GameScreen {
+
+  private enum OperationKey implements Key {
+    LEFT(KeyEvent.VK_LEFT),
+    RIGHT(KeyEvent.VK_RIGHT),
+    SPACE(KeyEvent.VK_SPACE);
+
+    private final int code;
+
+    private OperationKey(int code) {
+      this.code = code;
+    }
+
+    @Override
+    public int code() {
+      return code;
+    }
+  }
 
   private final Space space;
-  private Keystroke leftKey;
-  private Keystroke rightKey;
-  private Keystroke spaceKey;
+  private final Keyboard<OperationKey> keyboard;
 
   public MainScreen(Space space) {
     this.space = Objects.requireNonNull(space);
-    this.leftKey = Keystroke.RELEASED;
-    this.rightKey = Keystroke.RELEASED;
-    this.spaceKey = Keystroke.RELEASED;
+    this.keyboard = Keyboard.create(OperationKey.values());
+
     setScreenSize(space.width(), space.height());
     setFocusable(true);
-    addKeyListener(this);
+    addKeyListener(keyboard);
   }
 
   @Override
@@ -32,34 +46,13 @@ public class MainScreen extends GameScreen implements KeyListener {
 
   @Override
   protected void runGameLoop() {
-    if (leftKey.isPressed()) space.moveLaserCannonToLeft();
-    if (rightKey.isPressed()) space.moveLaserCannonToRight();
-    if (spaceKey.isPressed()) space.fireLaserCannon();
+    if (keyboard.isPressed(OperationKey.LEFT)) space.moveLaserCannonToLeft();
+    if (keyboard.isPressed(OperationKey.RIGHT)) space.moveLaserCannonToRight();
+    if (keyboard.isPressed(OperationKey.SPACE)) space.fireLaserCannon();
     space.moveAliens();
     space.moveLasers();
     space.defeatAliens();
     space.fireAliensLasers();
     space.defeatLaserCannon();
-  }
-
-  @Override
-  public void keyTyped(KeyEvent e) {}
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-    switch (e.getKeyCode()) {
-      case KeyEvent.VK_LEFT -> leftKey = Keystroke.PRESSED;
-      case KeyEvent.VK_RIGHT -> rightKey = Keystroke.PRESSED;
-      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.PRESSED;
-    }
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-    switch (e.getKeyCode()) {
-      case KeyEvent.VK_LEFT -> leftKey = Keystroke.RELEASED;
-      case KeyEvent.VK_RIGHT -> rightKey = Keystroke.RELEASED;
-      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.RELEASED;
-    }
   }
 }

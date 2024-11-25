@@ -17,9 +17,9 @@ public class MainScreen extends GameScreen implements KeyListener {
 
   public MainScreen(Space space) {
     this.space = Objects.requireNonNull(space);
-    this.leftKey = Keystroke.NOT_PRESSED;
-    this.rightKey = Keystroke.NOT_PRESSED;
-    this.spaceKey = Keystroke.NOT_PRESSED;
+    this.leftKey = Keystroke.RELEASED;
+    this.rightKey = Keystroke.RELEASED;
+    this.spaceKey = Keystroke.RELEASED;
     setScreenSize(space.width(), space.height());
     setFocusable(true);
     addKeyListener(this);
@@ -57,9 +57,9 @@ public class MainScreen extends GameScreen implements KeyListener {
   @Override
   public void keyReleased(KeyEvent e) {
     switch (e.getKeyCode()) {
-      case KeyEvent.VK_LEFT -> leftKey = Keystroke.NOT_PRESSED;
-      case KeyEvent.VK_RIGHT -> rightKey = Keystroke.NOT_PRESSED;
-      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.NOT_PRESSED;
+      case KeyEvent.VK_LEFT -> leftKey = Keystroke.RELEASED;
+      case KeyEvent.VK_RIGHT -> rightKey = Keystroke.RELEASED;
+      case KeyEvent.VK_SPACE -> spaceKey = Keystroke.RELEASED;
     }
   }
 }

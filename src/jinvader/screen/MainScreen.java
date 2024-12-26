@@ -36,7 +36,7 @@ public class MainScreen extends GameScreen {
 
     setScreenSize(space.width(), space.height());
     setFocusable(true);
-    addKeyListener(keyboard);
+    addKeyListener(keyboard.asKeyListener());
   }
 
   @Override
